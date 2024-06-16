@@ -1,7 +1,7 @@
-package com.example.jobparser.service;
+package com.example.jobparser.database.service;
 
-import com.example.jobparser.entity.ParseQuery;
-import com.example.jobparser.repository.ParseQueryRepository;
+import com.example.jobparser.database.entity.ParseQuery;
+import com.example.jobparser.database.repository.ParseQueryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

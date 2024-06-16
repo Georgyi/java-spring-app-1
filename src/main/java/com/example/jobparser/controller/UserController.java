@@ -1,8 +1,8 @@
 package com.example.jobparser.controller;
 
 import com.example.jobparser.dto.UserDto;
-import com.example.jobparser.entity.User;
-import com.example.jobparser.service.UserService;
+import com.example.jobparser.database.entity.User;
+import com.example.jobparser.database.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

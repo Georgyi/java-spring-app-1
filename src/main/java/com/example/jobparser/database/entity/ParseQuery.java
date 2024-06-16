@@ -1,4 +1,4 @@
-package com.example.jobparser.entity;
+package com.example.jobparser.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

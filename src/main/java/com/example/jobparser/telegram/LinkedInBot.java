@@ -1,8 +1,8 @@
 package com.example.jobparser.telegram;
 
-import com.example.jobparser.entity.User;
-import com.example.jobparser.service.ParseQueryService;
-import com.example.jobparser.service.UserService;
+import com.example.jobparser.database.entity.User;
+import com.example.jobparser.database.service.ParseQueryService;
+import com.example.jobparser.database.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

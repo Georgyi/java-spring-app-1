@@ -1,6 +1,6 @@
-package com.example.jobparser.repository;
+package com.example.jobparser.database.repository;
 
-import com.example.jobparser.entity.ParseQuery;
+import com.example.jobparser.database.entity.ParseQuery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

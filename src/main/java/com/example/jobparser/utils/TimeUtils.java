@@ -1,13 +1,19 @@
 package com.example.jobparser.utils;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class TimeUtils {
     public static LocalDateTime parseDateTime(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(dateString, formatter).atStartOfDay();
+    }
+
+    public static Instant toInstant(LocalDateTime localDateTime) {
+        return localDateTime.atZone(ZoneId.systemDefault()).toInstant();
     }
 
     public static LocalDateTime getDateSubtractTimeMessage(String timeMessage) {

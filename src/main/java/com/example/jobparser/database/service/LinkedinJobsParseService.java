@@ -1,8 +1,8 @@
-package com.example.jobparser.service;
+package com.example.jobparser.database.service;
 
-import com.example.jobparser.entity.Job;
+import com.example.jobparser.database.entity.Job;
 import com.example.jobparser.exception.CustomRuntimeException;
-import com.example.jobparser.repository.JobRepository;
+import com.example.jobparser.database.repository.JobRepository;
 import com.example.jobparser.telegram.LinkedInBot;
 import com.example.jobparser.utils.TextUtils;
 import com.example.jobparser.utils.TimeUtils;
@@ -62,6 +62,9 @@ public class LinkedinJobsParseService {
     @Value("${linkedin.parsing.jobs.meta.jobs-count-class-name}")
     private String jobsCountClassName;
 
+    @Value("${linkedin.parsing.jobs.card.base-card.search-entity-media.class-name}")
+    private String searchEntityMediaClassName;
+
     private final LinkedInBot linkedInBot;
     private final JobRepository jobRepository;
 
@@ -95,6 +98,17 @@ public class LinkedinJobsParseService {
 
     private String getCompanyUrl(Element element) {
         return element.attribute("href").getValue();
+    }
+
+    private String getCompanyImageUrl(Element element) {
+        System.out.println("------ getCompanyImageUrl 1");
+        var wrapper = element.getElementsByClass(searchEntityMediaClassName).get(0);
+        System.out.println("------ getCompanyImageUrl 2: " + wrapper);
+        var image = wrapper.getElementsByTag("img").get(0);
+        System.out.println("------ getCompanyImageUrl 3: " + image);
+        var url = image.attribute("data-delayed-url");
+        System.out.println("------ getCompanyImageUrl 4: " + url);
+        return url.getValue();
     }
 
     private String getCompanyName(Element element) {
@@ -136,6 +150,7 @@ public class LinkedinJobsParseService {
         var jobUrl = getJobUrl(element);
         var jobTitle = getJobTitle(element);
         var subtitleElement = getSubtitleElement(element);
+        var companyImageUrl = getCompanyImageUrl(baseCard);
         var companyUrl = getCompanyUrl(subtitleElement);
         var companyName = getCompanyName(subtitleElement);
         var jobMetaElement = getMetaElement(element);
@@ -143,7 +158,11 @@ public class LinkedinJobsParseService {
         var jobLocation = getJobLocation(jobMetaElement);
         var date = getJobDate(timeElement);
         var timeMessage = getTimeMessage(timeElement);
-        var jobCreatedAt = TimeUtils.getDateSubtractTimeMessage(timeMessage);
+
+        var jobCreatedAtLocalDateTime = TimeUtils.getDateSubtractTimeMessage(timeMessage);
+        var jobCreatedAtInstance = TimeUtils.toInstant(jobCreatedAtLocalDateTime);
+
+        System.out.println("companyImageUrl: " + companyImageUrl);
 
         return Job.builder()
                 .jobId(Long.valueOf(jobId))
@@ -155,8 +174,9 @@ public class LinkedinJobsParseService {
                 .companyName(companyName)
                 .jobLocation(jobLocation)
                 .date(date)
+                .companyImageUrl(companyImageUrl)
                 .timeMessage(timeMessage)
-                .jobCreatedAt(jobCreatedAt)
+                .jobCreatedAt(jobCreatedAtInstance)
                 .build();
     }
 

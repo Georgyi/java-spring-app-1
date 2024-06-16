@@ -1,8 +1,9 @@
-package com.example.jobparser.entity;
+package com.example.jobparser.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
@@ -27,6 +28,8 @@ public class Job extends Auditable {
     private String jobUrl;
     @Column(name = "company_url", nullable = false)
     private String companyUrl;
+    @Column(name = "company_image_url", nullable = false)
+    private String companyImageUrl;
 
     @Column(name = "job_title", nullable = false)
     private String jobTitle;
@@ -39,5 +42,5 @@ public class Job extends Auditable {
     @Column(name = "time_message", nullable = false)
     private String timeMessage;
     @Column(name = "job_created_at", nullable = false)
-    private LocalDateTime jobCreatedAt;
+    private Instant jobCreatedAt;
 }

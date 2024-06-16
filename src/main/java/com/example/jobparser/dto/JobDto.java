@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -25,5 +25,5 @@ public class JobDto extends TimestampsFields {
     private String jobLocation;
     private String date;
     private String timeMessage;
-    private LocalDateTime jobCreatedAt;
+    private Instant jobCreatedAt;
 }

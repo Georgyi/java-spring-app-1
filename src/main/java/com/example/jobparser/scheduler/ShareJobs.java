@@ -1,7 +1,7 @@
 package com.example.jobparser.scheduler;
 
-import com.example.jobparser.entity.Job;
-import com.example.jobparser.service.LinkedinJobsParseService;
+import com.example.jobparser.database.entity.Job;
+import com.example.jobparser.database.service.LinkedinJobsParseService;
 import com.example.jobparser.telegram.LinkedInBot;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ public class ShareJobs {
     private final LinkedInBot linkedInBot;
 
     @Async("taskExecutor")
-    @Scheduled(fixedDelay = 300_000)
+//    @Scheduled(fixedDelay = 300_000)
     public void parserJobsTask() {
         log.info("------------------------------ ShareJobs - every 5 minutes - start ------------------------------");
 

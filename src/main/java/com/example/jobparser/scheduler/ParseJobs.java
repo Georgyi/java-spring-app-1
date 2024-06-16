@@ -1,7 +1,7 @@
 package com.example.jobparser.scheduler;
 
 import com.example.jobparser.exception.CustomRuntimeException;
-import com.example.jobparser.service.LinkedinJobsParseService;
+import com.example.jobparser.database.service.LinkedinJobsParseService;
 import com.example.jobparser.utils.NumberUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,7 @@ public class ParseJobs {
     private static final Integer MAX_ITERATIONS = NumberUtils.clamp(300_000 / ITERATION_DELAY, 0, 100);
 
     @Async("taskExecutor")
-    @Scheduled(fixedDelay = 300_000)
+//    @Scheduled(fixedDelay = 300_000)
     public void parserJobsTask() {
         log.info("------------------------------ parserJobsTask - every 5 minutes - start ------------------------------");
 
@@ -42,7 +42,7 @@ public class ParseJobs {
                 Thread.sleep(ITERATION_DELAY);
             }
         } catch (RuntimeException e) {
-            System.out.println("Some error!");
+            System.out.println("Some error! " + e.getMessage());
         } catch (InterruptedException e) {
             throw new CustomRuntimeException("Something was wrong... Class: ParseJobs / Method: parserJobsTask");
         }

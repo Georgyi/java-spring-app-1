@@ -1,4 +1,4 @@
-package com.example.jobparser.entity;
+package com.example.jobparser.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,4 +33,10 @@ public class User extends Auditable {
 
     @Column(name = "phone")
     private String phone;
+
+    @Column(name = "linked_in_login")
+    private String linkedIdLogin;
+
+    @Column(name = "linked_in_password")
+    private String linkedInPassword;
 }

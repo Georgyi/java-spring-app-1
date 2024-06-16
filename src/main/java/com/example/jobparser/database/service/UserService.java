@@ -1,8 +1,7 @@
-package com.example.jobparser.service;
+package com.example.jobparser.database.service;
 
-import com.example.jobparser.dto.UserDto;
-import com.example.jobparser.entity.User;
-import com.example.jobparser.repository.UserRepository;
+import com.example.jobparser.database.entity.User;
+import com.example.jobparser.database.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

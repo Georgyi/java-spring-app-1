@@ -1,8 +1,8 @@
 package com.example.jobparser.controller;
 
-import com.example.jobparser.entity.ParseQuery;
+import com.example.jobparser.database.entity.ParseQuery;
 import com.example.jobparser.exception.CustomRuntimeException;
-import com.example.jobparser.service.ParseQueryService;
+import com.example.jobparser.database.service.ParseQueryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,7 +29,6 @@ public class ParseQueryController {
     @GetMapping("/test")
     @ExceptionHandler(CustomRuntimeException.class)
     public void test() {
-        // geo_id / 101318387
         parseQueryService.clearQueryParam("geo_id");
     }
 }
